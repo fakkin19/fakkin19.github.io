@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edilizia Pro - Specialisti in Cartongesso</title>
+    <title>Corrado Facchin - Specialista in Cartongesso</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         * {
@@ -11,82 +12,134 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         .fade-in {
             animation: fadeIn 1s ease-in;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .slide-in {
             animation: slideIn 0.8s ease-out;
         }
-        
+
         @keyframes slideIn {
-            from { transform: translateX(-100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
-        
+
         .hover-lift {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .hover-lift:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
-        
+
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        
+
         .gradient-text {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         nav {
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.95);
         }
-        
+
         .service-card {
             background: linear-gradient(145deg, #ffffff, #f3f4f6);
         }
-        
+
         .cta-button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             transition: all 0.3s ease;
         }
-        
+
         .cta-button:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
-        
+
         .parallax {
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: right 0.3s ease;
+            z-index: 100;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 99;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
+
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="fixed w-full z-50 shadow-lg">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold gradient-text">Edilizia Pro</div>
+                <div class="text-2xl font-bold gradient-text">Corrado Facchin</div>
+                <img src="Logo Azienda Papa 2.jpg" alt="Logo azienda" style="width: 100px;">
                 <div class="hidden md:flex space-x-8">
                     <a href="#home" class="text-gray-700 hover:text-purple-600 transition">Home</a>
                     <a href="#servizi" class="text-gray-700 hover:text-purple-600 transition">Servizi</a>
@@ -102,6 +155,60 @@
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay fixed inset-0 bg-black bg-opacity-30 z-40" id="menuOverlay" onclick="toggleMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 left-0 h-full bg-white rounded-2xl p-8 w-80 shadow-lg z-50 transform -translate-x-full transition-transform duration-300" id="mobileMenu">
+        <div class="flex justify-between items-center mb-8">
+            <span class="text-black text-xl font-bold">Menu</span>
+            <button onclick="toggleMenu()" class="text-black">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <nav class="flex flex-col space-y-4">
+            <!-- Home -->
+            <a href="#home" onclick="toggleMenu()" class="flex items-center text-black text-lg py-3 px-4 rounded-lg transition-colors duration-300 hover:bg-gray-200 hover:text-gray-900">
+                <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M4 10v10h6v-6h4v6h6V10"></path>
+                </svg>
+                Home
+            </a>
+            <!-- Servizi -->
+            <a href="#servizi" onclick="toggleMenu()" class="flex items-center text-black text-lg py-3 px-4 rounded-lg transition-colors duration-300 hover:bg-gray-200 hover:text-gray-900">
+                <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Servizi
+            </a>
+            <!-- Progetti -->
+            <a href="#gallery" onclick="toggleMenu()" class="flex items-center text-black text-lg py-3 px-4 rounded-lg transition-colors duration-300 hover:bg-gray-200 hover:text-gray-900">
+                <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h4l3 3h11v11H3V7z" />
+                </svg>
+                Progetti
+            </a>
+            <!-- Chi Siamo -->
+            <a href="#chi-siamo" onclick="toggleMenu()" class="flex items-center text-black text-lg py-3 px-4 rounded-lg transition-colors duration-300 hover:bg-gray-200 hover:text-gray-900">
+                <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A7 7 0 1116.879 6.196a7 7 0 01-11.758 11.608z" />
+                </svg>
+                Chi Siamo
+            </a>
+            <!-- Contatti -->
+            <a href="#contatti" onclick="toggleMenu()" class="flex items-center text-black text-lg py-3 px-4 rounded-lg transition-colors duration-300 hover:bg-gray-200 hover:text-gray-900">
+                <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M21 8v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8" />
+                </svg>
+                Contatti
+            </a>
+        </nav>
+    </div>
+
+
 
     <!-- Hero Section -->
     <section id="home" class="gradient-bg min-h-screen flex items-center pt-20">
@@ -153,7 +260,7 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div class="fade-in">
-                    <div class="text-4xl font-bold gradient-text mb-2">500+</div>
+                    <div class="text-4xl font-bold gradient-text mb-2">2500+</div>
                     <div class="text-gray-600">Progetti Completati</div>
                 </div>
                 <div class="fade-in">
@@ -165,8 +272,8 @@
                     <div class="text-gray-600">Clienti Soddisfatti</div>
                 </div>
                 <div class="fade-in">
-                    <div class="text-4xl font-bold gradient-text mb-2">24/7</div>
-                    <div class="text-gray-600">Assistenza</div>
+                    <div class="text-4xl font-bold gradient-text mb-2">20+</div>
+                    <div class="text-gray-600">Collaboratori</div>
                 </div>
             </div>
         </div>
@@ -179,7 +286,7 @@
                 <h2 class="text-4xl font-bold text-gray-800 mb-4">I Nostri Servizi</h2>
                 <p class="text-xl text-gray-600">Soluzioni complete per ogni tua esigenza</p>
             </div>
-            
+
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="service-card p-8 rounded-2xl hover-lift">
                     <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mb-6">
@@ -236,7 +343,7 @@
                 <h2 class="text-4xl font-bold text-gray-800 mb-4">I Nostri Progetti</h2>
                 <p class="text-xl text-gray-600">Eccellenza in ogni dettaglio</p>
             </div>
-            
+
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="group relative overflow-hidden rounded-2xl cursor-pointer hover-lift">
                     <div class="h-64 bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center">
@@ -272,8 +379,8 @@
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2">
                     <h2 class="text-4xl font-bold text-gray-800 mb-6">Chi Siamo</h2>
-                    <p class="text-gray-600 mb-4 text-lg">Da oltre 15 anni siamo il punto di riferimento nella provincia per lavori in cartongesso. La nostra esperienza e professionalità ci permettono di garantire risultati eccellenti in ogni progetto.</p>
-                    <p class="text-gray-600 mb-6 text-lg">Il nostro team di esperti è specializzato in soluzioni innovative e personalizzate, sempre attento alle esigenze del cliente e alle ultime tendenze del settore.</p>
+                    <p class="text-gray-600 mb-4 text-lg">Da oltre 35 anni siamo il punto di riferimento nella Valbelluna per lavori in cartongesso. La nostra esperienza e professionalità ci permettono di garantire risultati eccellenti in ogni progetto.</p>
+                    <p class="text-gray-600 mb-6 text-lg">Specializzato in soluzioni personalizzate, sempre attento alle esigenze del cliente e alle ultime tendenze del settore.</p>
                     <div class="space-y-4">
                         <div class="flex items-center">
                             <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mr-4">
@@ -281,7 +388,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
                             </div>
-                            <span class="text-gray-700 text-lg">Personale qualificato e certificato</span>
+                            <span class="text-gray-700 text-lg">Personale qualificato</span>
                         </div>
                         <div class="flex items-center">
                             <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mr-4">
@@ -308,19 +415,19 @@
                             <div class="space-y-6">
                                 <div class="flex items-center justify-between p-4 bg-purple-50 rounded-xl">
                                     <span class="font-semibold text-gray-800">Esperienza</span>
-                                    <span class="text-purple-600 font-bold">15+ anni</span>
+                                    <span class="text-purple-600 font-bold">35+ anni</span>
                                 </div>
                                 <div class="flex items-center justify-between p-4 bg-indigo-50 rounded-xl">
                                     <span class="font-semibold text-gray-800">Progetti</span>
-                                    <span class="text-indigo-600 font-bold">500+</span>
+                                    <span class="text-indigo-600 font-bold">2500+</span>
                                 </div>
                                 <div class="flex items-center justify-between p-4 bg-pink-50 rounded-xl">
                                     <span class="font-semibold text-gray-800">Soddisfazione</span>
                                     <span class="text-pink-600 font-bold">98%</span>
                                 </div>
                                 <div class="flex items-center justify-between p-4 bg-yellow-50 rounded-xl">
-                                    <span class="font-semibold text-gray-800">Team</span>
-                                    <span class="text-yellow-600 font-bold">20+ professionisti</span>
+                                    <span class="font-semibold text-gray-800">Zone coperte</span>
+                                    <span class="text-yellow-600 font-bold">Provincia di Belluno e dintorni</span>
                                 </div>
                             </div>
                         </div>
@@ -337,7 +444,7 @@
                 <h2 class="text-4xl font-bold text-gray-800 mb-4">Contattaci</h2>
                 <p class="text-xl text-gray-600">Siamo pronti a realizzare il tuo progetto</p>
             </div>
-            
+
             <div class="max-w-4xl mx-auto">
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="bg-gray-50 p-8 rounded-2xl">
@@ -351,7 +458,7 @@
                                 </div>
                                 <div>
                                     <p class="font-semibold text-gray-800">Telefono</p>
-                                    <p class="text-gray-600">+39 XXX XXX XXXX</p>
+                                    <p class="text-gray-600">+39 3406747576</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -362,7 +469,7 @@
                                 </div>
                                 <div>
                                     <p class="font-semibold text-gray-800">Email</p>
-                                    <p class="text-gray-600">info@ediliziapro.it</p>
+                                    <p class="text-gray-600">corrado.facchin@gmail.com</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -374,12 +481,12 @@
                                 </div>
                                 <div>
                                     <p class="font-semibold text-gray-800">Indirizzo</p>
-                                    <p class="text-gray-600">Via Example, 123<br>Bergamo, Italia</p>
+                                    <p class="text-gray-600">Via A. Solagna, 5<br>Borgo Valbelluna (BL), Italia</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-gray-50 p-8 rounded-2xl">
                         <h3 class="text-2xl font-bold text-gray-800 mb-6">Richiedi un Preventivo</h3>
                         <form class="space-y-4">
@@ -400,8 +507,8 @@
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-8 mb-8">
                 <div>
-                    <h3 class="text-2xl font-bold mb-4">Edilizia Pro</h3>
-                    <p class="text-gray-200">Specialisti in cartongesso con oltre 15 anni di esperienza nel settore dell'edilizia.</p>
+                    <h3 class="text-2xl font-bold mb-4">Corrado Facchin</h3>
+                    <p class="text-gray-200">Specialista in cartongesso con oltre 35 anni di esperienza nel settore dell'edilizia.</p>
                 </div>
                 <div>
                     <h4 class="text-xl font-semibold mb-4">Link Utili</h4>
@@ -414,13 +521,13 @@
                 </div>
                 <div>
                     <h4 class="text-xl font-semibold mb-4">Orari di Lavoro</h4>
-                    <p class="text-gray-200">Lunedì - Venerdì: 8:00 - 18:00</p>
-                    <p class="text-gray-200">Sabato: 9:00 - 13:00</p>
+                    <p class="text-gray-200">Lunedì - Venerdì: 8:00 - 17:00</p>
+                    <p class="text-gray-200">Sabato: 9:00 - 12:00</p>
                     <p class="text-gray-200">Domenica: Chiuso</p>
                 </div>
             </div>
             <div class="border-t border-white border-opacity-20 pt-8 text-center">
-                <p class="text-gray-200">&copy; 2024 Edilizia Pro. Tutti i diritti riservati.</p>
+                <p class="text-gray-200">&copy; 2025 Corrado Facchin. Tutti i diritti riservati.</p>
             </div>
         </div>
     </footer>
@@ -428,18 +535,24 @@
     <script>
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
 
         // Mobile menu toggle
         function toggleMenu() {
-            alert('Menu mobile - da implementare con le tue preferenze!');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
         }
 
         // Form submission
@@ -457,7 +570,9 @@
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, { threshold: 0.1 });
+        }, {
+            threshold: 0.1
+        });
 
         document.querySelectorAll('.fade-in, .hover-lift').forEach(el => {
             el.style.opacity = '0';
@@ -467,4 +582,5 @@
         });
     </script>
 </body>
+
 </html>
